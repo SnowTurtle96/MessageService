@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span>User Message Accounts</span>
+        <button class="btn btn-primary float-right jh-create-entity create-user-message-account-my-suffix" [routerLink]="['/', { outlets: { popup: ['user-message-account-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new User Message Account
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="userMessageAccounts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Firstname</span></th>
+            <th><span>Lastname</span></th>
+            <th><span>Dob</span></th>
+            <th><span>Username</span></th>
+            <th><span>Password</span></th>
+            <th><span>Access Level</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let userMessageAccount of userMessageAccounts ;trackBy: trackId">
+                <td><a [routerLink]="['../user-message-account-my-suffix', userMessageAccount.id ]">{{userMessageAccount.id}}</a></td>
+                <td>{{userMessageAccount.firstname}}</td>
+                <td>{{userMessageAccount.lastname}}</td>
+                <td>{{userMessageAccount.dob | date:'mediumDate'}}</td>
+                <td>{{userMessageAccount.username}}</td>
+                <td>{{userMessageAccount.password}}</td>
+                <td>{{userMessageAccount.accessLevel}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../user-message-account-my-suffix', userMessageAccount.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-message-account-my-suffix/'+ userMessageAccount.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-message-account-my-suffix/'+ userMessageAccount.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

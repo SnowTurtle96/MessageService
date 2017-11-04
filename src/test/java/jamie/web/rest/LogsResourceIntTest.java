@@ -1,6 +1,6 @@
 package jamie.web.rest;
 
-import jamie.MessagingServiceApp;
+import jamie.ChatapplicationApp;
 import jamie.web.rest.vm.LoggerVM;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessagingServiceApp.class)
+@SpringBootTest(classes = ChatapplicationApp.class)
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;

@@ -1,7 +1,7 @@
 package jamie.web.rest;
 
 import io.github.jhipster.config.JHipsterProperties;
-import jamie.MessagingServiceApp;
+import jamie.ChatapplicationApp;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ProfileInfoResource
  **/
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessagingServiceApp.class)
+@SpringBootTest(classes = ChatapplicationApp.class)
 public class ProfileInfoResourceIntTest {
 
     @Mock

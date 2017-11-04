@@ -26,18 +26,9 @@ spring:
             enabled: false
         livereload:
             enabled: false
-    cloud:
-        stream:
-            kafka:
-                binder:
-                    brokers: localhost
-                    zk-nodes: localhost
-            bindings:
-                output:
-                    destination: topic-jhipster
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/MessagingService?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/chatapplication?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password:
         hikari:
@@ -56,10 +47,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.NoDefaultJCacheRegionFactory
-    data:
-        elasticsearch:
-            cluster-name:
-            cluster-nodes: localhost:9300
     mail:
         host: localhost
         port: 25
@@ -79,7 +66,7 @@ liquibase:
 
 # ===================================================================
 # To enable SSL, generate a certificate using:
-# keytool -genkey -alias MessagingService -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+# keytool -genkey -alias chatapplication -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 #
 # You can also use Let's Encrypt:
 # https://maximilian-boehm.com/hp2121/Create-a-Java-Keystore-JKS-from-Let-s-Encrypt-Certificates.htm
@@ -92,7 +79,7 @@ liquibase:
 #        key-store: keystore.p12
 #        key-store-password: <your-password>
 #        keyStoreType: PKCS12
-#        keyAlias: MessagingService
+#        keyAlias: chatapplication
 # ===================================================================
 server:
     port: 8080
@@ -119,12 +106,12 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 084ac204ba7356eac664dcf29692b2b98829009f
+                secret: 1f542ae96e81da70db949a39b2479ffe44a58ebd
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: MessagingService@localhost
+        from: chatapplication@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
@@ -132,7 +119,7 @@ jhipster:
             enabled: false
             host: localhost
             port: 2003
-            prefix: MessagingService
+            prefix: chatapplication
         prometheus:
             enabled: false
             endpoint: /prometheusMetrics

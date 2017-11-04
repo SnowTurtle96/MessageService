@@ -1,7 +1,7 @@
 package jamie.service;
 import jamie.config.Constants;
 
-import jamie.MessagingServiceApp;
+import jamie.ChatapplicationApp;
 import jamie.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessagingServiceApp.class)
+@SpringBootTest(classes = ChatapplicationApp.class)
 public class MailServiceIntTest {
 
     @Autowired

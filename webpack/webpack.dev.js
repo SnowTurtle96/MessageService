@@ -26,12 +26,6 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
             ],
             target: 'http://127.0.0.1:8080',
             secure: false
-        },{
-            context: [
-                '/websocket'
-            ],
-            target: 'ws://127.0.0.1:8080',
-            ws: true
         }]
     },
     entry: {
@@ -74,8 +68,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
             host: 'localhost',
             port: 9000,
             proxy: {
-                target: 'http://localhost:9060',
-                ws: true
+                target: 'http://localhost:9060'
             }
         }, {
             reload: false

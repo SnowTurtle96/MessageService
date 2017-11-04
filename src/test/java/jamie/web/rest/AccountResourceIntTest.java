@@ -1,7 +1,7 @@
 package jamie.web.rest;
 
 import jamie.config.Constants;
-import jamie.MessagingServiceApp;
+import jamie.ChatapplicationApp;
 import jamie.domain.Authority;
 import jamie.domain.User;
 import jamie.repository.AuthorityRepository;
@@ -49,7 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AccountResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessagingServiceApp.class)
+@SpringBootTest(classes = ChatapplicationApp.class)
 public class AccountResourceIntTest {
 
     @Autowired

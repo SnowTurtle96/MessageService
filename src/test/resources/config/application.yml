@@ -17,28 +17,19 @@ eureka:
     client:
         enabled: true
     instance:
-        appname: MessagingService
-        instanceId: MessagingService:${spring.application.instance-id:${random.value}}
+        appname: chatapplication
+        instanceId: chatapplication:${spring.application.instance-id:${random.value}}
 
 spring:
     application:
-        name: MessagingService
+        name: chatapplication
     jackson:
         serialization.write_dates_as_timestamps: false
     cache:
         type: none
-    cloud:
-        stream:
-            kafka:
-                binder:
-                    brokers: localhost
-                    zk-nodes: localhost
-            bindings:
-                output:
-                    destination: topic-jhipster
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:MessagingService;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:chatapplication;DB_CLOSE_DELAY=-1
         name:
         username:
         password:
@@ -58,14 +49,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.hbm2ddl.auto: validate
-    data:
-        elasticsearch:
-            cluster-name:
-            cluster-nodes:
-            properties:
-                path:
-                    logs: target/elasticsearch/log
-                    data: target/elasticsearch/data
     mail:
         host: localhost
     messages:
@@ -115,7 +98,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 084ac204ba7356eac664dcf29692b2b98829009f
+                secret: 1f542ae96e81da70db949a39b2479ffe44a58ebd
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

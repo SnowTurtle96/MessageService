@@ -1,8 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiTrackerService } from './../shared/tracker/tracker.service';
 
-import { MessagingServiceSharedModule } from '../shared';
+import { ChatapplicationSharedModule } from '../shared';
 /* jhipster-needle-add-admin-module-import - JHipster will add admin modules imports here */
 
 import {
@@ -25,7 +24,6 @@ import {
     JhiConfigurationService,
     JhiHealthService,
     JhiMetricsService,
-    JhiTrackerComponent,
     LogsService,
     UserResolvePagingParams,
     UserResolve,
@@ -34,7 +32,7 @@ import {
 
 @NgModule({
     imports: [
-        MessagingServiceSharedModule,
+        ChatapplicationSharedModule,
         RouterModule.forRoot(adminState, { useHash: true }),
         /* jhipster-needle-add-admin-module - JHipster will add admin modules here */
     ],
@@ -51,7 +49,6 @@ import {
         JhiHealthCheckComponent,
         JhiHealthModalComponent,
         JhiDocsComponent,
-        JhiTrackerComponent,
         JhiMetricsMonitoringComponent,
         JhiMetricsMonitoringModalComponent
     ],
@@ -67,11 +64,10 @@ import {
         JhiHealthService,
         JhiMetricsService,
         LogsService,
-        JhiTrackerService,
         UserResolvePagingParams,
         UserResolve,
         UserModalService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class MessagingServiceAdminModule {}
+export class ChatapplicationAdminModule {}

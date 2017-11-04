@@ -1,5 +1,5 @@
-var dataCacheName = 'MessagingService-v1';
-var cacheName = 'MessagingService-1';
+var dataCacheName = 'Chatapplication-v1';
+var cacheName = 'Chatapplication-1';
 var filesToCache = [
     '/',
     '/index.html'

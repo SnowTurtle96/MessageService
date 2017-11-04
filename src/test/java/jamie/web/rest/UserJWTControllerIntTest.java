@@ -1,6 +1,6 @@
 package jamie.web.rest;
 
-import jamie.MessagingServiceApp;
+import jamie.ChatapplicationApp;
 import jamie.domain.User;
 import jamie.repository.UserRepository;
 import jamie.security.jwt.TokenProvider;
@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.not;
  * @see UserJWTController
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessagingServiceApp.class)
+@SpringBootTest(classes = ChatapplicationApp.class)
 public class UserJWTControllerIntTest {
 
     @Autowired

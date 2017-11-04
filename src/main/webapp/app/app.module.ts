@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
-import { MessagingServiceSharedModule, UserRouteAccessService } from './shared';
-import { MessagingServiceHomeModule } from './home/home.module';
-import { MessagingServiceAdminModule } from './admin/admin.module';
-import { MessagingServiceAccountModule } from './account/account.module';
-import { MessagingServiceEntityModule } from './entities/entity.module';
+import { ChatapplicationSharedModule, UserRouteAccessService } from './shared';
+import { ChatapplicationHomeModule } from './home/home.module';
+import { ChatapplicationAdminModule } from './admin/admin.module';
+import { ChatapplicationAccountModule } from './account/account.module';
+import { ChatapplicationEntityModule } from './entities/entity.module';
 
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
@@ -30,11 +30,11 @@ import {
         BrowserModule,
         LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
-        MessagingServiceSharedModule,
-        MessagingServiceHomeModule,
-        MessagingServiceAdminModule,
-        MessagingServiceAccountModule,
-        MessagingServiceEntityModule,
+        ChatapplicationSharedModule,
+        ChatapplicationHomeModule,
+        ChatapplicationAdminModule,
+        ChatapplicationAccountModule,
+        ChatapplicationEntityModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -52,4 +52,4 @@ import {
     ],
     bootstrap: [ JhiMainComponent ]
 })
-export class MessagingServiceAppModule {}
+export class ChatapplicationAppModule {}

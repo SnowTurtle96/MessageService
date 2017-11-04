@@ -1,6 +1,6 @@
 package jamie.web.rest;
 
-import jamie.MessagingServiceApp;
+import jamie.ChatapplicationApp;
 import jamie.config.audit.AuditEventConverter;
 import jamie.domain.PersistentAuditEvent;
 import jamie.repository.PersistenceAuditEventRepository;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AuditResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessagingServiceApp.class)
+@SpringBootTest(classes = ChatapplicationApp.class)
 @Transactional
 public class AuditResourceIntTest {
 

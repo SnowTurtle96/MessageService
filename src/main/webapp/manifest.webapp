@@ -1,6 +1,6 @@
 {
-  "name": "MessagingService",
-  "short_name": "MessagingService",
+  "name": "Chatapplication",
+  "short_name": "Chatapplication",
   "icons": [
       {
           "src": "./content/images/logo-jhipster.png",

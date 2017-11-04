@@ -1,9 +1,9 @@
 import { platformBrowser } from '@angular/platform-browser';
 import { ProdConfig } from './blocks/config/prod.config';
-import { MessagingServiceAppModuleNgFactory } from '../../../../target/aot/src/main/webapp/app/app.module.ngfactory';
+import { ChatapplicationAppModuleNgFactory } from '../../../../target/aot/src/main/webapp/app/app.module.ngfactory';
 
 ProdConfig();
 
-platformBrowser().bootstrapModuleFactory(MessagingServiceAppModuleNgFactory)
+platformBrowser().bootstrapModuleFactory(ChatapplicationAppModuleNgFactory)
 .then((success) => console.log(`Application started`))
 .catch((err) => console.error(err));

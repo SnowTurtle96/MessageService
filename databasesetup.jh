@@ -1,0 +1,34 @@
+entity UserMessageAccount {
+	firstname String,
+    lastname String,
+    dob LocalDate,
+    username String,
+    password String,
+    accessLevel Integer
+}
+
+entity UserMessagesSent {
+	username String,
+    timeSent Instant,
+    body String
+}
+
+
+
+
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	UserMessageAccount{job} to UserMessagesSent
+	
+
+}
+
+
+
+
+dto * with mapstruct
+
+// Set an angular suffix
+angularSuffix * with mySuffix

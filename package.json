@@ -1,7 +1,7 @@
 {
-  "name": "messaging-service",
+  "name": "chatapplication",
   "version": "0.0.0",
-  "description": "Description for MessagingService",
+  "description": "Description for chatapplication",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [
@@ -28,8 +28,6 @@
     "reflect-metadata": "0.1.10",
     "rxjs": "5.4.2",
     "swagger-ui": "2.2.10",
-    "sockjs-client": "1.1.4",
-    "webstomp-client": "1.0.6",
     "tether": "1.4.0",
     "zone.js": "0.8.16"
   },

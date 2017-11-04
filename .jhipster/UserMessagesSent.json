@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "userMessageAccount",
+            "otherEntityName": "userMessageAccount",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "username",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "timeSent",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "body",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171027201449",
+    "entityTableName": "user_messages_sent",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

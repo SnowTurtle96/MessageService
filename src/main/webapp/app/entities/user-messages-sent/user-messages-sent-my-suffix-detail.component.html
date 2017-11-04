@@ -1,0 +1,39 @@
+
+<div *ngIf="userMessagesSent">
+    <h2><span>User Messages Sent</span> {{userMessagesSent.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Username</span></dt>
+        <dd>
+            <span>{{userMessagesSent.username}}</span>
+        </dd>
+        <dt><span>Time Sent</span></dt>
+        <dd>
+            <span>{{userMessagesSent.timeSent | date:'medium'}}</span>
+        </dd>
+        <dt><span>Body</span></dt>
+        <dd>
+            <span>{{userMessagesSent.body}}</span>
+        </dd>
+        <dt><span>User Message Account</span></dt>
+        <dd>
+            <div *ngIf="userMessagesSent.userMessageAccountId">
+                <a [routerLink]="['/user-message-account-my-suffix', userMessagesSent.userMessageAccountId]">{{userMessagesSent.userMessageAccountId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-messages-sent-my-suffix/'+ userMessagesSent.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

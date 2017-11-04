@@ -2,8 +2,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import {
-    MessagingServiceSharedLibsModule,
-    MessagingServiceSharedCommonModule,
+    ChatapplicationSharedLibsModule,
+    ChatapplicationSharedCommonModule,
     CSRFService,
     AuthServerProvider,
     AccountService,
@@ -13,19 +13,15 @@ import {
     LoginModalService,
     JhiLoginModalComponent,
     Principal,
-    JhiTrackerService,
     HasAnyAuthorityDirective,
-    JhiSocialComponent,
-    SocialService,
 } from './';
 
 @NgModule({
     imports: [
-        MessagingServiceSharedLibsModule,
-        MessagingServiceSharedCommonModule
+        ChatapplicationSharedLibsModule,
+        ChatapplicationSharedCommonModule
     ],
     declarations: [
-        JhiSocialComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective
     ],
@@ -36,16 +32,13 @@ import {
         StateStorageService,
         Principal,
         CSRFService,
-        JhiTrackerService,
         AuthServerProvider,
-        SocialService,
         UserService,
         DatePipe
     ],
     entryComponents: [JhiLoginModalComponent],
     exports: [
-        MessagingServiceSharedCommonModule,
-        JhiSocialComponent,
+        ChatapplicationSharedCommonModule,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective,
         DatePipe
@@ -53,4 +46,4 @@ import {
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
-export class MessagingServiceSharedModule {}
+export class ChatapplicationSharedModule {}

@@ -1,6 +1,6 @@
 package jamie.repository;
 
-import jamie.MessagingServiceApp;
+import jamie.ChatapplicationApp;
 import jamie.config.Constants;
 import jamie.config.audit.AuditEventConverter;
 import jamie.domain.PersistentAuditEvent;
@@ -32,7 +32,7 @@ import static jamie.repository.CustomAuditEventRepository.EVENT_DATA_COLUMN_MAX_
  * @see CustomAuditEventRepository
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = MessagingServiceApp.class)
+@SpringBootTest(classes = ChatapplicationApp.class)
 @Transactional
 public class CustomAuditEventRepositoryIntTest {
 

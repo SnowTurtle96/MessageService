@@ -1,23 +1,21 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { WindowRef } from './tracker/window.service';
 import {
-    MessagingServiceSharedLibsModule,
+    ChatapplicationSharedLibsModule,
     JhiAlertComponent,
     JhiAlertErrorComponent
 } from './';
 
 @NgModule({
     imports: [
-        MessagingServiceSharedLibsModule
+        ChatapplicationSharedLibsModule
     ],
     declarations: [
         JhiAlertComponent,
         JhiAlertErrorComponent
     ],
     providers: [
-        WindowRef,
         Title,
         {
             provide: LOCALE_ID,
@@ -25,9 +23,9 @@ import {
         },
     ],
     exports: [
-        MessagingServiceSharedLibsModule,
+        ChatapplicationSharedLibsModule,
         JhiAlertComponent,
         JhiAlertErrorComponent
     ]
 })
-export class MessagingServiceSharedCommonModule {}
+export class ChatapplicationSharedCommonModule {}
