@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs/Observable";
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import {Http, RequestOptions, URLSearchParams} from '@angular/http';
 import { Account, LoginModalService, Principal } from '../shared';
@@ -9,7 +10,6 @@ import {UserMessagesSentMySuffixService} from "../entities/user-messages-sent/us
 import {ResponseWrapper} from "../shared/model/response-wrapper.model";
 import {UserMessageAccountMySuffix} from "../entities/user-message-account/user-message-account-my-suffix.model";
 import {JhiEventManager, JhiAlertService, JhiDateUtils} from 'ng-jhipster';
-import {Observable} from "rxjs/Observable";
 import {SERVER_API_URL} from "../app.constants";
 
 
@@ -47,10 +47,6 @@ export class HomeComponent implements OnInit {
         // this.userMessagesSents.
         // this.iterateOverMessages();
 
-
-
-
-
     }
 
     ngOnInit() {
@@ -64,6 +60,8 @@ export class HomeComponent implements OnInit {
         this.isSaving = false;
         // this.iterateOverMessages();
         this.userMessagesSents = [ new UserMessagesSentMySuffix()];
+        this.loadSentTimer();
+
 
 
     }
@@ -96,6 +94,7 @@ export class HomeComponent implements OnInit {
         (<HTMLInputElement>document.getElementById("messageSent")).value = ("");
         this.userMessagesSent.body = this.message;
         this.userMessagesSent.userMessageAccountId = 1;
+        this.userMessagesSent.username = this.account.firstName;
         this.save();
     }
 
@@ -135,16 +134,18 @@ export class HomeComponent implements OnInit {
         );
     }
 
+    loadSentTimer() {
+
+        const timer = Observable.timer(2000, 1000);
+
+    }
     loadAllSent() {
+
         this.userMessagesSentService.query().subscribe(
             (res: ResponseWrapper) => {
                 this.a = res.json;
 
                     console.log(this.a);
-
-
-
-
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
