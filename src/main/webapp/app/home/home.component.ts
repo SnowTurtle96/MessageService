@@ -42,8 +42,7 @@ export class HomeComponent implements OnInit {
                 private userMessageAccountService: UserMessageAccountMySuffixService, private jhiAlertService: JhiAlertService, private dateUtils: JhiDateUtils
     ) {
         this.userMessagesSent = new UserMessagesSentMySuffix();
-        this.loadAll();
-        this.loadAllSent();
+
 
     }
 
@@ -58,8 +57,10 @@ export class HomeComponent implements OnInit {
         this.isSaving = false;
         // this.iterateOverMessages();
         this.userMessagesSents = [ new UserMessagesSentMySuffix()];
-        this.loadSentTimer();
-        this.convertTime();
+        // this.convertTime();
+        this.loadAll();
+        this.loadAllSent();
+        this.scroll();
 
 
 
@@ -91,10 +92,6 @@ export class HomeComponent implements OnInit {
 
         this.message = (<HTMLInputElement>document.getElementById("messageSent")).value;
         (<HTMLInputElement>document.getElementById("messageSent")).value = ("");
-
-
-
-
 
         this.userMessagesSent.body = this.message;
         this.userMessagesSent.userMessageAccountId = 1;
@@ -138,11 +135,7 @@ export class HomeComponent implements OnInit {
         );
     }
 
-    loadSentTimer() {
 
-        const timer = Observable.timer(2000, 1000);
-
-    }
 
         convertTime(){
 
@@ -170,6 +163,10 @@ export class HomeComponent implements OnInit {
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
+    }
 
+    scroll(){
+        var textarea = document.getElementById('messageList');
+        textarea.scrollTop = textarea.scrollHeight;
     }
 }

@@ -1,7 +1,7 @@
-<div style="overflow:scroll; height:400px;">
-<div class="form-group"  *ngFor="let a of a">
+<div style="overflow:scroll;  height:400px;" id="messageList">
+    <div class="form-group"  *ngFor="let a of a">
         <p>{{a.timeSent}}: {{a.username}}: {{a.body}}</p>
-</div>
+    </div>
 </div>
 <form class="form-group">
     <label for="messageSent">Send:</label>
@@ -9,5 +9,3 @@
     <textarea class="form-control" rows="3" id="test" autofocus (keydown.enter)="sendMessage()" ></textarea>
 
     <input class="btn btn-primary" id="button" type="submit"  value="Submit" (click)="sendMessage()">
-
-</form>
