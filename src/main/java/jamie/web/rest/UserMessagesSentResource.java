@@ -100,9 +100,10 @@ public class UserMessagesSentResource {
     public List<UserMessagesSentDTO> getAllUserMessagesSents() {
         log.debug("REST request to get all UserMessagesSents");
         List<UserMessagesSent> userMessagesSents = userMessagesSentRepository.findAll();
-        return userMessagesSentMapper.toDto(userMessagesSents);
-        }
 
+        return userMessagesSentMapper.toDto(userMessagesSents);
+
+    }
     /**
      * GET  /user-messages-sents/:id : get the "id" userMessagesSent.
      *

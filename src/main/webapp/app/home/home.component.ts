@@ -44,8 +44,6 @@ export class HomeComponent implements OnInit {
         this.userMessagesSent = new UserMessagesSentMySuffix();
         this.loadAll();
         this.loadAllSent();
-        // this.userMessagesSents.
-        // this.iterateOverMessages();
 
     }
 
@@ -61,6 +59,7 @@ export class HomeComponent implements OnInit {
         // this.iterateOverMessages();
         this.userMessagesSents = [ new UserMessagesSentMySuffix()];
         this.loadSentTimer();
+        this.convertTime();
 
 
 
@@ -92,6 +91,11 @@ export class HomeComponent implements OnInit {
 
         this.message = (<HTMLInputElement>document.getElementById("messageSent")).value;
         (<HTMLInputElement>document.getElementById("messageSent")).value = ("");
+
+
+
+
+
         this.userMessagesSent.body = this.message;
         this.userMessagesSent.userMessageAccountId = 1;
         this.userMessagesSent.username = this.account.firstName;
@@ -139,6 +143,23 @@ export class HomeComponent implements OnInit {
         const timer = Observable.timer(2000, 1000);
 
     }
+
+        convertTime(){
+
+            for (let entry of this.userMessagesSents) {
+
+                var time = entry.timeSent;
+                var timea = time.getTime();
+                var d = new Date(time);
+                let formatedDate;
+                formatedDate += timea.getHours(); // => 9
+                formatedDate += timea.getMinutes(); // =>  30
+                formatedDate += timea.getSeconds(); // => 51
+                console.log(formatedDate);
+
+            }
+        }
+
     loadAllSent() {
 
         this.userMessagesSentService.query().subscribe(
