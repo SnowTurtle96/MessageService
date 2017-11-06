@@ -1,10 +1,14 @@
+
 <div style="overflow:scroll;  height:400px;" id="messageList">
     <div class="form-group"  *ngFor="let a of a">
-        <p>{{a.timeSent.toLocaleTimeString()}}: {{a.username}}: {{a.body}}</p>
+        <p>{{a.timeSent.toLocaleTimeString()}}: {{a.username}}:</p>
+        <p>{{a.body}}</p>
     </div>
 </div>
 <form class="form-group">
     <label for="messageSent">Send:</label>
-    <textarea class="form-control" rows="1" id="messageSent" autofocus (keydown.enter)="sendMessage()" ></textarea>
+    <textarea class="form-control" rows="3" id="messageSent" autofocus (keydown.enter)="sendMessage()" ></textarea>
 
     <input class="btn btn-primary" id="button" type="submit"  value="Submit" (click)="sendMessage()">
+</form>
+

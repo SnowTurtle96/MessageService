@@ -11,6 +11,7 @@ import {ResponseWrapper} from "../shared/model/response-wrapper.model";
 import {UserMessageAccountMySuffix} from "../entities/user-message-account/user-message-account-my-suffix.model";
 import {JhiEventManager, JhiAlertService, JhiDateUtils} from 'ng-jhipster';
 import {SERVER_API_URL} from "../app.constants";
+import {WebSocketService} from "./websocket";
 
 
 @Component({
@@ -39,7 +40,8 @@ export class HomeComponent implements OnInit {
         constructor(private principal: Principal,
                 private loginModalService: LoginModalService,
                 private eventManager: JhiEventManager, private http: Http,    private userMessagesSentService: UserMessagesSentMySuffixService,
-                private userMessageAccountService: UserMessageAccountMySuffixService, private jhiAlertService: JhiAlertService, private dateUtils: JhiDateUtils
+                private userMessageAccountService: UserMessageAccountMySuffixService,
+                    private jhiAlertService: JhiAlertService, private dateUtils: JhiDateUtils, private websocket: WebSocketService
     ) {
         this.userMessagesSent = new UserMessagesSentMySuffix();
         this.loadAll();
@@ -59,8 +61,10 @@ export class HomeComponent implements OnInit {
         this.userMessagesSents = [ new UserMessagesSentMySuffix()];
 
         this.scroll();
+        this.websocket.connect("www.google");
 
-        this.convertTime();
+        // this.websocket.create();
+
 
 
 
@@ -164,4 +168,6 @@ export class HomeComponent implements OnInit {
         var textarea = document.getElementById('messageList');
         textarea.scrollTop = textarea.scrollHeight;
     }
+
+
 }
