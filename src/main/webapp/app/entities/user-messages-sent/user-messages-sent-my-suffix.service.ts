@@ -44,9 +44,10 @@ export class UserMessagesSentMySuffixService {
 
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
-        return Observable.interval(500)
+        return Observable.interval(1000)
             .mergeMap(() => this.http.get(this.resourceUrl, options)
             .map((res: Response) => this.convertResponse(res)));
+
     }
 
     delete(id: number): Observable<Response> {

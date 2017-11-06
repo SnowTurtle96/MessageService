@@ -32,17 +32,18 @@ export class HomeComponent implements OnInit {
     isSaving: Boolean;
     userMessageAccounts: UserMessageAccountMySuffix[];
     private userMessagesSents = [];
-    public a;
     public dateString;
+    public a;
 
 
-    constructor(private principal: Principal,
+        constructor(private principal: Principal,
                 private loginModalService: LoginModalService,
                 private eventManager: JhiEventManager, private http: Http,    private userMessagesSentService: UserMessagesSentMySuffixService,
                 private userMessageAccountService: UserMessageAccountMySuffixService, private jhiAlertService: JhiAlertService, private dateUtils: JhiDateUtils
     ) {
         this.userMessagesSent = new UserMessagesSentMySuffix();
-
+        this.loadAll();
+        this.loadAllSent();
 
     }
 
@@ -55,12 +56,11 @@ export class HomeComponent implements OnInit {
         });
         this.registerAuthenticationSuccess();
         this.isSaving = false;
-        // this.iterateOverMessages();
         this.userMessagesSents = [ new UserMessagesSentMySuffix()];
-        // this.convertTime();
-        this.loadAll();
-        this.loadAllSent();
+
         this.scroll();
+
+        this.convertTime();
 
 
 
@@ -135,31 +135,26 @@ export class HomeComponent implements OnInit {
         );
     }
 
+    convertTime(){
+
+     for(let a of this.a)
+     {
+         console.log(a.timeSent);
+     }
 
 
-        convertTime(){
 
-            for (let entry of this.userMessagesSents) {
+    }
 
-                var time = entry.timeSent;
-                var timea = time.getTime();
-                var d = new Date(time);
-                let formatedDate;
-                formatedDate += timea.getHours(); // => 9
-                formatedDate += timea.getMinutes(); // =>  30
-                formatedDate += timea.getSeconds(); // => 51
-                console.log(formatedDate);
-
-            }
-        }
 
     loadAllSent() {
 
         this.userMessagesSentService.query().subscribe(
             (res: ResponseWrapper) => {
-                this.a = res.json;
+                 this.a = res.json;
+                this.scroll();
 
-                    console.log(this.a);
+
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
