@@ -1,25 +1,49 @@
 package jamie.config;
 
 
-import org.springframework.context.annotation.Configuration;
-    import org.springframework.messaging.simp.config.MessageBrokerRegistry;
-    import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
-    import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
-    import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import jamie.web.websocket.dto.ActivityDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationListener;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
+import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-@Configuration
-@EnableWebSocketMessageBroker
-public class WebSocket extends AbstractWebSocketMessageBrokerConfigurer {
+import java.security.Principal;
+import java.time.Instant;
 
-    @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
-        config.setApplicationDestinationPrefixes("/app");
+
+@Controller
+public class ActivityService implements ApplicationListener<SessionDisconnectEvent> {
+
+    private static final Logger log = LoggerFactory.getLogger(ActivityService.class);
+
+    private final SimpMessageSendingOperations messagingTemplate;
+
+    public ActivityService(SimpMessageSendingOperations messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
+
+    @SubscribeMapping("/topic/activity")
+    @SendTo("/topic/tracker")
+    public ActivityDTO sendActivity(@Payload ActivityDTO activityDTO, StompHeaderAccessor stompHeaderAccessor, Principal principal) {
+        activityDTO.setUserLogin(principal.getName());
+        activityDTO.setSessionId(stompHeaderAccessor.getSessionId());
+        activityDTO.setIpAddress(stompHeaderAccessor.getSessionAttributes().get(IP_ADDRESS).toString());
+        activityDTO.setTime(Instant.now());
+        log.debug("Sending user tracking data {}", activityDTO);
+        return activityDTO;
     }
 
     @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/gs-guide-websocket").withSockJS();
+    public void onApplicationEvent(SessionDisconnectEvent event) {
+        ActivityDTO activityDTO = new ActivityDTO();
+        activityDTO.setSessionId(event.getSessionId());
+        activityDTO.setPage("logout");
+        messagingTemplate.convertAndSend("/topic/tracker", activityDTO);
     }
-
 }

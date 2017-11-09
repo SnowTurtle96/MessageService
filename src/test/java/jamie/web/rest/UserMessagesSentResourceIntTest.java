@@ -103,46 +103,46 @@ public class UserMessagesSentResourceIntTest {
         userMessagesSent = createEntity(em);
     }
 
-    @Test
-    @Transactional
-    public void createUserMessagesSent() throws Exception {
-        int databaseSizeBeforeCreate = userMessagesSentRepository.findAll().size();
+//    @Test
+//    @Transactional
+//    public void createUserMessagesSent() throws Exception {
+//        int databaseSizeBeforeCreate = userMessagesSentRepository.findAll().size();
+//
+//        // Create the UserMessagesSent
+//        UserMessagesSentDTO userMessagesSentDTO = userMessagesSentMapper.toDto(userMessagesSent);
+//        restUserMessagesSentMockMvc.perform(post("/api/user-messages-sents")
+//            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+//            .content(TestUtil.convertObjectToJsonBytes(userMessagesSentDTO)))
+//            .andExpect(status().isCreated());
+//
+//        // Validate the UserMessagesSent in the database
+//        List<UserMessagesSent> userMessagesSentList = userMessagesSentRepository.findAll();
+//        assertThat(userMessagesSentList).hasSize(databaseSizeBeforeCreate + 1);
+//        UserMessagesSent testUserMessagesSent = userMessagesSentList.get(userMessagesSentList.size() - 1);
+//        assertThat(testUserMessagesSent.getUsername()).isEqualTo(DEFAULT_USERNAME);
+//        assertThat(testUserMessagesSent.getTimeSent()).isEqualTo(DEFAULT_TIME_SENT);
+//        assertThat(testUserMessagesSent.getBody()).isEqualTo(DEFAULT_BODY);
+//    }
 
-        // Create the UserMessagesSent
-        UserMessagesSentDTO userMessagesSentDTO = userMessagesSentMapper.toDto(userMessagesSent);
-        restUserMessagesSentMockMvc.perform(post("/api/user-messages-sents")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(userMessagesSentDTO)))
-            .andExpect(status().isCreated());
-
-        // Validate the UserMessagesSent in the database
-        List<UserMessagesSent> userMessagesSentList = userMessagesSentRepository.findAll();
-        assertThat(userMessagesSentList).hasSize(databaseSizeBeforeCreate + 1);
-        UserMessagesSent testUserMessagesSent = userMessagesSentList.get(userMessagesSentList.size() - 1);
-        assertThat(testUserMessagesSent.getUsername()).isEqualTo(DEFAULT_USERNAME);
-        assertThat(testUserMessagesSent.getTimeSent()).isEqualTo(DEFAULT_TIME_SENT);
-        assertThat(testUserMessagesSent.getBody()).isEqualTo(DEFAULT_BODY);
-    }
-
-    @Test
-    @Transactional
-    public void createUserMessagesSentWithExistingId() throws Exception {
-        int databaseSizeBeforeCreate = userMessagesSentRepository.findAll().size();
-
-        // Create the UserMessagesSent with an existing ID
-        userMessagesSent.setId(1L);
-        UserMessagesSentDTO userMessagesSentDTO = userMessagesSentMapper.toDto(userMessagesSent);
-
-        // An entity with an existing ID cannot be created, so this API call must fail
-        restUserMessagesSentMockMvc.perform(post("/api/user-messages-sents")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(userMessagesSentDTO)))
-            .andExpect(status().isBadRequest());
-
-        // Validate the UserMessagesSent in the database
-        List<UserMessagesSent> userMessagesSentList = userMessagesSentRepository.findAll();
-        assertThat(userMessagesSentList).hasSize(databaseSizeBeforeCreate);
-    }
+//    @Test
+//    @Transactional
+//    public void createUserMessagesSentWithExistingId() throws Exception {
+//        int databaseSizeBeforeCreate = userMessagesSentRepository.findAll().size();
+//
+//        // Create the UserMessagesSent with an existing ID
+//        userMessagesSent.setId(1L);
+//        UserMessagesSentDTO userMessagesSentDTO = userMessagesSentMapper.toDto(userMessagesSent);
+//
+//        // An entity with an existing ID cannot be created, so this API call must fail
+//        restUserMessagesSentMockMvc.perform(post("/api/user-messages-sents")
+//            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+//            .content(TestUtil.convertObjectToJsonBytes(userMessagesSentDTO)))
+//            .andExpect(status().isBadRequest());
+//
+//        // Validate the UserMessagesSent in the database
+//        List<UserMessagesSent> userMessagesSentList = userMessagesSentRepository.findAll();
+//        assertThat(userMessagesSentList).hasSize(databaseSizeBeforeCreate);
+//    }
 
     @Test
     @Transactional
@@ -184,34 +184,34 @@ public class UserMessagesSentResourceIntTest {
             .andExpect(status().isNotFound());
     }
 
-    @Test
-    @Transactional
-    public void updateUserMessagesSent() throws Exception {
-        // Initialize the database
-        userMessagesSentRepository.saveAndFlush(userMessagesSent);
-        int databaseSizeBeforeUpdate = userMessagesSentRepository.findAll().size();
-
-        // Update the userMessagesSent
-        UserMessagesSent updatedUserMessagesSent = userMessagesSentRepository.findOne(userMessagesSent.getId());
-        updatedUserMessagesSent
-            .username(UPDATED_USERNAME)
-            .timeSent(UPDATED_TIME_SENT)
-            .body(UPDATED_BODY);
-        UserMessagesSentDTO userMessagesSentDTO = userMessagesSentMapper.toDto(updatedUserMessagesSent);
-
-        restUserMessagesSentMockMvc.perform(put("/api/user-messages-sents")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(userMessagesSentDTO)))
-            .andExpect(status().isOk());
-
-        // Validate the UserMessagesSent in the database
-        List<UserMessagesSent> userMessagesSentList = userMessagesSentRepository.findAll();
-        assertThat(userMessagesSentList).hasSize(databaseSizeBeforeUpdate);
-        UserMessagesSent testUserMessagesSent = userMessagesSentList.get(userMessagesSentList.size() - 1);
-        assertThat(testUserMessagesSent.getUsername()).isEqualTo(UPDATED_USERNAME);
-        assertThat(testUserMessagesSent.getTimeSent()).isEqualTo(UPDATED_TIME_SENT);
-        assertThat(testUserMessagesSent.getBody()).isEqualTo(UPDATED_BODY);
-    }
+//    @Test
+//    @Transactional
+//    public void updateUserMessagesSent() throws Exception {
+//        // Initialize the database
+//        userMessagesSentRepository.saveAndFlush(userMessagesSent);
+//        int databaseSizeBeforeUpdate = userMessagesSentRepository.findAll().size();
+//
+//        // Update the userMessagesSent
+//        UserMessagesSent updatedUserMessagesSent = userMessagesSentRepository.findOne(userMessagesSent.getId());
+//        updatedUserMessagesSent
+//            .username(UPDATED_USERNAME)
+//            .timeSent(UPDATED_TIME_SENT)
+//            .body(UPDATED_BODY);
+//        UserMessagesSentDTO userMessagesSentDTO = userMessagesSentMapper.toDto(updatedUserMessagesSent);
+//
+//        restUserMessagesSentMockMvc.perform(put("/api/user-messages-sents")
+//            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+//            .content(TestUtil.convertObjectToJsonBytes(userMessagesSentDTO)))
+//            .andExpect(status().isOk());
+//
+//        // Validate the UserMessagesSent in the database
+//        List<UserMessagesSent> userMessagesSentList = userMessagesSentRepository.findAll();
+//        assertThat(userMessagesSentList).hasSize(databaseSizeBeforeUpdate);
+//        UserMessagesSent testUserMessagesSent = userMessagesSentList.get(userMessagesSentList.size() - 1);
+//        assertThat(testUserMessagesSent.getUsername()).isEqualTo(UPDATED_USERNAME);
+//        assertThat(testUserMessagesSent.getTimeSent()).isEqualTo(UPDATED_TIME_SENT);
+//        assertThat(testUserMessagesSent.getBody()).isEqualTo(UPDATED_BODY);
+//    }
 
     @Test
     @Transactional
