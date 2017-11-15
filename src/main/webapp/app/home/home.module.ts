@@ -1,6 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {WebSocketService} from "./websocket";
 
 import { ChatapplicationSharedModule } from '../shared';
 
@@ -17,7 +16,7 @@ import { HOME_ROUTE, HomeComponent } from './';
     entryComponents: [
     ],
     providers: [
-        WebSocketService
+
 
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
