@@ -35,5 +35,4 @@ export class ChatService {
             console.log('err', err);
         });
     }
-
 }
