@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
     public dateString;
     public a;
     chat: ChatService;
+    public c;
 
 
         constructor(private principal: Principal,
@@ -47,7 +48,9 @@ export class HomeComponent implements OnInit {
     ) {
         this.userMessagesSent = new UserMessagesSentMySuffix();
         this.loadAll();
-        this.loadAllSent();
+        // this.loadAllSent()
+            this.c = new ChatService();
+
 
     }
 
@@ -61,7 +64,7 @@ export class HomeComponent implements OnInit {
         this.registerAuthenticationSuccess();
         this.isSaving = false;
         this.userMessagesSents = [ new UserMessagesSentMySuffix()];
-
+        this.c.connect();
         this.scroll();
 
 
@@ -100,8 +103,7 @@ export class HomeComponent implements OnInit {
         this.userMessagesSent.userMessageAccountId = 1;
         this.userMessagesSent.username = this.account.firstName;
         this.save();
-        var c = new ChatService();
-        c.connect();
+        this.c.send(this.message);
     }
 
     save() {
@@ -139,19 +141,6 @@ export class HomeComponent implements OnInit {
             (res: ResponseWrapper) => this.onError(res.json)
         );
     }
-
-    convertTime(){
-
-     for(let a of this.a)
-     {
-         console.log(a.timeSent);
-     }
-
-
-
-    }
-
-
     loadAllSent() {
 
         this.userMessagesSentService.query().subscribe(
@@ -169,6 +158,4 @@ export class HomeComponent implements OnInit {
         var textarea = document.getElementById('messageList');
         textarea.scrollTop = textarea.scrollHeight;
     }
-
-
 }

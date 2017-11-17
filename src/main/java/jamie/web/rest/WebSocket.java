@@ -1,5 +1,6 @@
 package jamie.web.rest;
 
+import jamie.domain.UserMessagesSent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -12,8 +13,10 @@ public class WebSocket {
 
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
-    public String greeting(String message) throws Exception {
-        return new String("Hello");
+    public String greeting(UserMessagesSent message) throws Exception {
+        String a = message.toString();
+        System.out.println(a);
+        return new String(a);
     }
 
 }

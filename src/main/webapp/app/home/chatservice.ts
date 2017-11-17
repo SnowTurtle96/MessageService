@@ -4,7 +4,7 @@ import {WebsocketService} from "./WebsocketService";
 
 const CHAT_URL = 'localhost:9000/topic';
 var SockJS = require('sockjs-client');
-var Stomp = require('stompjs');
+var Stomp = require("stompjs/lib/stomp.js").Stomp
 
 @Injectable()
 export class ChatService {
@@ -18,21 +18,22 @@ export class ChatService {
     constructor() {
     }
 
-    send() {
-        this.stompClient.send('/app/hello/' + this.activityId, {},      JSON.stringify({ 'name': this.text }));
+    send(message) {
+        this.stompClient.send('/app/hello/' + this.activityId, {}, JSON.stringify({'name': message}));
     }
 
     connect() {
         var that = this;
-        var socket = new SockJS('tst-rest.mypageexample/hello?activityId=' + this.activityId);
+        var socket = new SockJS('http://localhost:8080/hello');
         this.stompClient = Stomp.over(socket);
-        this.stompClient.connect({}, function (frame) {
+        this.stompClient.connect("guest", "guest", function (frame) {
             console.log('Connected: ' + frame);
-            that.stompClient.subscribe('/topic/greetings/' + that.activityId, function (greeting) {
-                that.messages.push(JSON.parse(greeting.body).content);
+            that.stompClient.subscribe('http://localhost:8080/topic/greeting', function (greeting) {
+                console.log("from from", greeting);
             });
         }, function (err) {
             console.log('err', err);
         });
+
     }
 }
