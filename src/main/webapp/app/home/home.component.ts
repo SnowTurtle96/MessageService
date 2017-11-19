@@ -65,10 +65,16 @@ export class HomeComponent implements OnInit {
         this.isSaving = false;
         this.userMessagesSents = [ new UserMessagesSentMySuffix()];
         this.c.connect();
+        this.c.observeClient().subscribe(data => {
+            console.log('message', data);
+
+
+
+
+    });
+        this.c.subscription();
+
         this.scroll();
-
-
-
 
     }
 
@@ -98,12 +104,9 @@ export class HomeComponent implements OnInit {
 
         this.message = (<HTMLInputElement>document.getElementById("messageSent")).value;
         (<HTMLInputElement>document.getElementById("messageSent")).value = ("");
-
-        this.userMessagesSent.body = this.message;
-        this.userMessagesSent.userMessageAccountId = 1;
-        this.userMessagesSent.username = this.account.firstName;
-        this.save();
         this.c.send(this.message);
+
+
     }
 
     save() {
@@ -158,4 +161,7 @@ export class HomeComponent implements OnInit {
         var textarea = document.getElementById('messageList');
         textarea.scrollTop = textarea.scrollHeight;
     }
+
+
+
 }
